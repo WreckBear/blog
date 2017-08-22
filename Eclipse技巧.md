@@ -25,3 +25,13 @@
 4. contextClassLoader是怎么回事？
 
 5. Eclipse的Libraries是什么？
+
+   要说Eclipse的Libraries，就要先说classPath，classpath除了作为AppClassLoader的加载路径，还与编译有关。当一个类在编译的时候，引用了其他类，而其他类不在本目录，则要添加-cp参数，来指定其他类所在的路径，如果其他类在classpath也找不到，编译既不会通过，在eclipse中就会有红色标记。这时候我们可以给eclipse工程项目设置一下，让他每自动编译的时候，都带上我们想追加的classpath，不就好了？eclipse中通过设置Library设置，进入项目的Build Path窗口，进入Libraries标签，点击右边的add Library -> User Library，我们可以自己填一个Library，自己命名，然后给自己命名的Library添加路径或者jar包，完成后，eclipse自动编译的时候，会自动追加上Library中所包含的路径和jar包作为classpath，加到编译参数后，这样编译就正常了。
+
+   PS:其实上面有一点说的不对，就是`编译时去classpath找，找不到就报错`，其实编译参数还有扩展路径、引导路径，都可以设置。而Eclipse中新建Library时，如果勾选`System library`，那么该Library在编译的时候，会以引导路径的参数值作为参数传递，一般会被JVM的BootstrapClassLoader去加载。
+
+6. 如何添加Github的SSHkey？
+
+   打开gitbash，输入ssh-keygen -t rsa，一路回车，最终会在~/.ssh下生成一个公钥文件，将公钥文件的内容复制到Github的SSH key中，即可
+
+7. 阿萨德
